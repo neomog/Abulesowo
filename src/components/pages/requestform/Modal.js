@@ -8,27 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function ModalApp({ show, close }) {
 
-    // <form>
-    //                 
-    //                 <input type="text" name="name" value={name} placeholder="Enter your first and last name" />
-
-    //                 {/* <label for="name">name</label>
-    //                 <input type="text" name="name" value="userInput.name" placeholder="" /> */}
-
-    //                 <label for="number">Phone number</label>
-    //                 <input type="number" name="number" value={number} onChange={handleChange} placeholder="" />
-
-    //                 <label for="email">Email</label>
-    //                 <input type="email" name="email" value={email} onChange={handleChange} placeholder="" />
-
-    //                 <label for="date"></label>
-    //                 <input type="date" name="date" onChange={handleChange} value={date} />
-
-    //                 <label for="message">Message</label>
-    //                 <textarea className="textarea" name="message" onChange={handleChange} value={text} />
-                    
-    //                 <input type="submit" value="Submit" />
-    //             </form>
     
     return (
         <div>
@@ -41,10 +20,6 @@ function ModalApp({ show, close }) {
                     </Modal.Title>
                 </Modal.Header>
 
-                {/* <Modal.Body>
-                    <p>Modal text here</p>
-                </Modal.Body> */}
-                    
                 <Modal.Body style={{border: "none"}}>
                         <Form.Group>
                             <Form.Label>Name</Form.Label>
