@@ -1,19 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import search from "./search.png";
 
 const SearchLands = () => {
-    return (
-        <form  className="search-component">
-            <input type="text" name="location" placeholder="Enter a Location" />
+  const [location, setLocation] = useState("");
+  const [property, setProperty] = useState("");
+  const [price, setPrice] = useState("");
 
-            <input type="text" name="property" placeholder="Property type" />
+  return (
+    <form className="search-component">
+      <input
+        type="text"
+        name="location"
+        value={location}
+        placeholder="Enter a Location"
+      />
 
-            <input type="text" name="price" placeholder="Enter max price" />
-            
-            <button>Search<img src={search}/></button>
-        </form>
+      <input
+        type="text"
+        name="property"
+        value={property}
+        placeholder="Property type"
+      />
 
-    )
-}
+      <input
+        type="text"
+        name="price"
+        value={price}
+        placeholder="Enter max price"
+      />
 
-export default SearchLands
+      <button>
+        Search
+        <img src={search} />
+      </button>
+    </form>
+  );
+};
+
+export default SearchLands;

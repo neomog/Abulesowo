@@ -1,6 +1,5 @@
-
-import React, {useState, useEffect} from 'react';
-// import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Header from "../../layout/Header";
 import Land from "./Land";
 import SearchLands from "./SearchLands";
@@ -8,57 +7,68 @@ import next from "./next.png";
 import prev from "./prev.png";
 // import data from "./pics/db.json";
 import { Link } from "react-router-dom";
-import data from "./pics/db";
-
+// import data from "./pics/db";
 
 const Lands = () => {
-
   const [land, setLand] = useState([]);
-    
+  const action = "06";
 
   useEffect(() => {
-      
-    setLand(data);
-    console.log(data)
+    if (action) {
+      const data = {
+        action: "06",
+        apptoken: "ZC20AD91QR",
+      };
 
-    })
-            
-    return (
-        <div className="property-container">
-            <Header />
-            <div className="mainContainer search-form">
-                <SearchLands />
-                <div className="view-container">
-                  <div className="left">
-                    <p className="redText boldText">Properties for sale</p>
-                  </div>
+      axios
+        .get("http://api.abulesowo.ng", {
+          params: data,
+        })
+        .then((res) => {
+          // if (res.data.m)
+          setLand(res.data);
+          console.log(res.data);
+        });
+    }
+  });
 
-                  <div className="right">
-                    <a href="#" className="redText">View all Properties for sale <img src={next}/></a>
-                  </div>
-                  
-                </div>
-            </div>
-            <section  
-            className="mainContainer property-style">
-                {land.map(item => (
-                   <Land item={item}/>
-                ))}
-        </section>
-        
-        <div className="row rent">
-              <div className="cols">
-                <a href="/property"><img src={prev} alt="prev" /></a>
+  return (
+    <div className="property-container">
+      <Header />
+      <div className="mainContainer search-form">
+        <SearchLands />
+        <div className="view-container">
+          <div className="left">
+            <p className="redText boldText">Lands for sale</p>
+          </div>
 
-                <a href="/property"><img src={next} alt="next" /></a>
-              </div>
-                      
-                    
-            </div>
+          <div className="right">
+            <a href="#" className="redText">
+              View all lands for sale <img src={next} />
+            </a>
+          </div>
         </div>
-    )
-}
+      </div>
+      <section className="mainContainer property-style">
+        {land.map((item) => (
+          <Land item={item} />
+        ))}
+      </section>
 
+      <div className="row rent">
+        <div className="cols">
+          <a href="/property">
+            <img src={prev} alt="prev" />
+          </a>
+
+          <a href="/property">
+            <img src={next} alt="next" />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // const data = [
 //   {
@@ -109,4 +119,4 @@ const Lands = () => {
 // ]
 
 // export default data;
-export default Lands
+export default Lands;

@@ -11,8 +11,10 @@ import RentDetails from "./components/pages/rentdetails/RentDetails";
 import RequestForm from "./components/pages/requestform/RequestForm";
 import Consulting from "./components/pages/consulting/Consulting";
 import Admin from "./admin/Admin";
-import Register from "./admin/register/Register";
+import AdminDashboard from "./admin/AdminDashboard";
+// import Register from "././admin/register/Register";
 import Login from "./admin/login/Login";
+import ProtectUser from "./protectUser";
 
 // --------------------------------------------------
 import Contact from "./components/pages/contact/Contact";
@@ -34,6 +36,13 @@ function App() {
   //   setModalOpen(!modalOpen);
   // }
 
+  const [adminDetails, setAdminDetails] = useState(
+    JSON.parse(localStorage.getItem("admindetails"))
+  );
+
+  const [propsDetail, setPropsDetail] = useState(
+    JSON.parse(localStorage.getItem("propsdetail"))
+  );
   return (
     <Router>
       <Switch>
@@ -61,11 +70,17 @@ function App() {
 
           <Route path="/contact" component={Contact} />
 
-          <Route path="/admin" component={Admin} />
-
-          <Route path="/register" component={Register} />
-
           <Route path="/login" component={Login} />
+
+          <Route path="/admin">
+            <Admin adminDetails={adminDetails} propsDetail={propsDetail} />
+          </Route>
+
+          <Route path="/admin-dashboard">
+            <AdminDashboard adminDetails={adminDetails} />
+          </Route>
+
+          {/* <ProtectUser path="/admin-dashboard" component={AdminDashboard} /> */}
         </div>
       </Switch>
     </Router>
