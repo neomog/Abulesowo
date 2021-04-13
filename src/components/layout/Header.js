@@ -1,43 +1,93 @@
-import React, { useState } from 'react'
-import RequestForm from "../pages/requestform/RequestForm";
+import React, { useState } from "react";
+// import RequestForm from "../pages/requestform/RequestForm";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+} from "reactstrap";
 
-import {Link} from "react-router-dom";
-import ModalApp from '../pages/requestform/Modal';
+// import { Link } from "react-router-dom";
+// import ModalApp from "../pages/requestform/Modal";
 const Header = () => {
-    const [show, setShow] = useState(false); 
+  // const [show, setShow] = useState(false);
+  // const [hamburger, setHamburger] = useState(false);
 
-    const openModal = () => {
-        setShow(true)
-    }
-    const close = () => {
-        setShow(false)
-        console.log('hey')
-  }
-        return (
-            <header>
-                <div className="header">
-                    <div>
-                        <span><strong>Abulesowo</strong></span>
-                    </div>
+  // const openModal = () => {
+  //   setShow(true);
+  // };
+  // const close = () => {
+  //   setShow(false);
+  //   console.log("hey");
+  // };
 
-                    <nav className={mainNav}>
-                        <Link to="/"><a className="active">Home</a></Link>
-                        <a href="#">About</a>
-                        <Link  onClick={openModal}>Request</Link>
-                        <a href="#">Our Blog</a>
-                        <Link to="/contact">Contact Us</Link>
-                    </nav>
-                </div>
+  const [collapsed, setCollapsed] = useState(true);
 
-                <ModalApp show={show} close={close} />
-            </header>
-        )
-    }
+  const toggleNavbar = () => setCollapsed(!collapsed);
 
+  return (
+    <div>
+      <Navbar color="faded" light className="header">
+        <NavbarBrand href="/" className="mr-auto">
+          <strong>Abulesowo</strong>
+        </NavbarBrand>
+        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+        <Collapse isOpen={!collapsed} navbar>
+          <Nav navbar>
+            <NavItem>
+              <NavLink href="/">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/about">About</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/contact">Contact Us</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
 
+  // const handleNav = () => {
+  //   setHamburger(!hamburger);
+  // };
+  // return (
+  //   <header>
+  //     <div className="header">
+  //       <div>
+  //         <span>
+  //           <strong>Abulesowo</strong>
+  //         </span>
+  //       </div>
 
-const mainNav = {
-    textDecoration: "none"
-}
+  //       <button className="nav-ham" onClick={handleNav}>
+  //         <span className="nav-ham-icon"></span>
+  //         <span className="nav-ham-icon"></span>
+  //         <span className="nav-ham-icon"></span>
+  //       </button>
 
-export default Header
+  //       <nav className="top-nav nav-links" id="links">
+  //         <Link to="/" className="active">
+  //           Home
+  //         </Link>
+  //         <Link to="/about">About</Link>
+  //         {/* <Link onClick={openModal}>Request</Link> */}
+  //         {/* <a href="#">Our Blog</a> */}
+  //         <Link to="/contact">Contact Us</Link>
+  //       </nav>
+  //     </div>
+
+  //     <ModalApp show={show} close={close} />
+  //   </header>
+  // );
+};
+
+// const mainNav = {
+//   textDecoration: "none",
+// };
+
+export default Header;

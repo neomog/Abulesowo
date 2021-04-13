@@ -72,7 +72,7 @@ const SignIn = () => {
 
           <nav className={mainNav}>
             <Link to="/admin-dashboard">
-              <a className="active">Dashboard</a>
+              <Link className="active">Dashboard</Link>
             </Link>
             <Link to="/admin">Add property</Link>
             <Link to="/login">Logout</Link>

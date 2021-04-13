@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useAlert } from "react-alert";
 
 import Button from "react-bootstrap/Button";
@@ -13,7 +13,7 @@ import axios from "axios";
 const Admin = (adminDetails) => {
   const alert = useAlert();
 
-  const apptoken = "ZC20AD91QR";
+  // const apptoken = "ZC20AD91QR";
 
   // const [userInput, setUserInput] = useState({
   //   type: "",
@@ -92,16 +92,18 @@ const Admin = (adminDetails) => {
           params: data,
         })
         .then((res) => {
+          console.log(res.data);
           setPropsType("");
           setPropsName("");
           setPropsLocation("");
           setPropsPrice("");
           setPropsDesc("");
+          setFile({});
           alert.show(res.data.message);
-          // console.log(res.data);
         })
         .catch((error) => {
           console.log(error);
+          console.log("error message");
         });
     }
   };
@@ -118,10 +120,12 @@ const Admin = (adminDetails) => {
           </div>
 
           <nav style={mainNav}>
-            <Link to="/admin-dashboard">
-              <a className="active">Dashboard</a>
+            <Link>
+              <Link to="/admin" className="active">
+                Dashboard
+              </Link>
             </Link>
-            <Link to="/admin">Add property</Link>
+            <Link to="/create">Add property</Link>
             <Link to="/login">Logout</Link>
           </nav>
         </div>
@@ -133,7 +137,6 @@ const Admin = (adminDetails) => {
             <Form.Control
               name="title"
               type="text"
-              placeholder="Normal text"
               placeholder="Enter title"
               value={propsname}
               onChange={(e) => setPropsName(e.target.value)}

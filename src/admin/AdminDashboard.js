@@ -1,32 +1,24 @@
 import React, { useState, useEffect } from "react";
 // import Header from "../components/layout/Header";
-import one from "./prop1.png";
+// import one from "./prop1.png";
 import { Link } from "react-router-dom";
 
 import { useAlert } from "react-alert";
 
 // import data from "./pics/db";
 
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Input,
-  Select,
-  Check,
-} from "reactstrap";
+import { Modal, ModalHeader, ModalBody, Input } from "reactstrap";
 import { Table, Button } from "react-bootstrap";
 
 import axios from "axios";
 
-const AdminDashboard = (props, adminDetails) => {
+const AdminDashboard = (props) => {
   const alert = useAlert();
-  const { buttonLabel, className } = props;
-  const [modal, setModal] = useState(false);
-  const [propsDetail, setPropsDetail] = useState(
-    JSON.parse(localStorage.getItem("propsdetail"))
-  );
+  const { className } = props;
+  // const [modal, setModal] = useState(false);
+  // const [propsDetail, setPropsDetail] = useState(
+  //   JSON.parse(localStorage.getItem("propsdetail"))
+  // );
   // console.log(propsDetail.propstoken);
 
   const [propsList, setPropsList] = useState([]);
@@ -48,9 +40,8 @@ const AdminDashboard = (props, adminDetails) => {
           params: data,
         })
         .then((req) => {
-          console.log(req.data);
+          // console.log(req.data);
           setPropsList(req.data);
-
           localStorage.setItem("propsdetails", JSON.stringify(req.data));
         })
         .catch((error) => {
@@ -61,27 +52,6 @@ const AdminDashboard = (props, adminDetails) => {
   }, [afterDel]);
 
   // const toggle = () => setHodal(!hmodal);
-
-  // const [userInput, setUserInput] = useState({
-  //   type: "",
-  //   title: "",
-  //   cost: "",
-  //   location: "",
-  //   status: true,
-  // });
-
-  const [file, setFile] = useState("");
-  const [fileName, setFileName] = useState("Upload a file");
-
-  // const onChange = (e) => {
-  //   const value = e.target.value;
-  //   // setUserInput({ ...userInput, [e.target.name]: value });
-  // };
-
-  const onFileChange = (e) => {
-    setFile(e.target.files[0]);
-    setFileName(e.target.files[0].name);
-  };
 
   const handleDelete = (e, propstoken) => {
     // var array = propsList;
@@ -99,7 +69,7 @@ const AdminDashboard = (props, adminDetails) => {
         params: data,
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         alert.show(res.data.message);
         setAfterDel(!afterDel);
       })
@@ -113,26 +83,35 @@ const AdminDashboard = (props, adminDetails) => {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
-  const [img, setImg] = useState(null);
+  // const [img, setImg] = useState(null);
   const [type, setType] = useState("");
   const [hmodal, setHmodal] = useState(false);
   const [propstoken, setPropsToken] = useState("");
+  const [propstype, setPropsType] = useState("");
 
-  const toggle = () => setHmodal(!hmodal);
+  // const toggle = () => setHmodal(!hmodal);
 
-  const handleEditModal = (name, description, location, price, propsToken) => {
+  const handleEditModal = (
+    name,
+    description,
+    location,
+    price,
+    propsToken,
+    propstype
+  ) => {
     setName(name);
     setDescription(description);
     setLocation(location);
     setPrice(price);
     setHmodal(!hmodal);
     setPropsToken(propsToken);
+    setPropsType(propstype);
   };
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
 
-    if (name || location || price || type || description) {
+    if (name || location || price || propstype || description) {
       const data = {
         apptoken: "ZC20AD91QR",
         action: "05",
@@ -142,7 +121,7 @@ const AdminDashboard = (props, adminDetails) => {
         propsdesc: description,
         propslocation: location,
         propsprice: price,
-        propstype: type,
+        propstype: propstype,
       };
       console.log(data);
       axios
@@ -160,20 +139,6 @@ const AdminDashboard = (props, adminDetails) => {
     }
   };
 
-  // const handleEdit = () => {
-  //   axios
-  //     .get("http://api.abulesowo.ng", {
-  //       params: data,
-  //     })
-  //     .then((res) => {
-  //       console.log(res.message);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       console.log("Check your network and try again.");
-  //     });
-  // };
-
   return (
     <div>
       <header>
@@ -186,9 +151,9 @@ const AdminDashboard = (props, adminDetails) => {
 
           <nav className={mainNav}>
             <Link to="/admin-dashboard">
-              <a className="active">Dashboard</a>
+              <Link className="active">Dashboard</Link>
             </Link>
-            <Link to="/admin">Add property</Link>
+            <Link to="/create">Add property</Link>
             <Link to="/login">Logout</Link>
           </nav>
         </div>
@@ -198,7 +163,7 @@ const AdminDashboard = (props, adminDetails) => {
           <h4>Manage Property</h4>
         </div>
         <Button>
-          <Link to="/admin">Add new property</Link>
+          <Link to="/create">Add new property</Link>
         </Button>
 
         <Table striped bordered hover variant="light">
@@ -288,7 +253,7 @@ const AdminDashboard = (props, adminDetails) => {
             value={type}
             onChange={(e) => setType(e.target.value)}
           >
-            <option>Choose Type</option>
+            <option>{propstype}</option>
             <option>Land</option>
             <option>Rent</option>
             <option>House</option>
@@ -305,7 +270,6 @@ const AdminDashboard = (props, adminDetails) => {
           <Input
             name="title"
             type="text"
-            placeholder="Normal text"
             placeholder="Enter title"
             value={description}
             onChange={(e) => setDescription(e.target.value)}

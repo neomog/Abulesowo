@@ -4,24 +4,35 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useAlert } from "react-alert";
 
 import axios from "axios";
 
-function ModalApp({ show, close }) {
+const ModalApp = ({ show, close }) => {
+  const alert = useAlert();
   const apptoken = "ZC20AD91QR";
+  // const admintoken = "6VTOWCEC51";
 
-  const [userInput, setUserInput] = useState({
-    username: "",
-    userlocation: "",
-    usermail: "",
-  });
+  // const [userInput, setUserInput] = useState({
+  //   username: "",
+  //   userlocation: "",
+  //   usermail: "",
+  // });
 
-  const { username, userlocation, usermail } = userInput;
+  // const [afterSend, setAfterSend] = useState(false);
+  const [username, setUserName] = useState("");
+  const [userlocation, setUserLocation] = useState("");
+  const [usermail, setUserMail] = useState("");
+  // const [info, setInfo] = useState("");
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setUserInput({ ...userInput, [e.target.name]: value });
-  };
+  // const { username, userlocation, usermail } = userInput;
+
+  // const empty = setUserInput({});
+
+  // const handleChange = (e) => {
+  //   const value = e.target.value;
+  //   setUserInput({ ...userInput, [e.target.name]: value });
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,11 +51,26 @@ function ModalApp({ show, close }) {
         })
         .then((res) => {
           if (res.data.response === "08") {
+            alert.success(res.data.message);
+            setUserName("");
+            setUserLocation("");
+            setUserMail("");
+            close();
+            // setInfo(res.data.message);
+            // console.log(res.data.message);
+          } else {
+            alert.error(res.data.message);
+            // setInfo(res.data.message);
             console.log(res.data.message);
           }
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log("error");
         });
     }
   };
+
   return (
     <div>
       <Modal show={show} centered backdrop="static">
@@ -65,13 +91,16 @@ function ModalApp({ show, close }) {
           </Modal.Header>
 
           <Modal.Body style={{ border: "none" }}>
+            {/* <p>{info}</p> */}
             <Form.Group>
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
                 name="username"
                 value={username}
-                onChange={handleChange}
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
                 placeholder="Enter your first and last name"
               />
 
@@ -80,7 +109,9 @@ function ModalApp({ show, close }) {
                 type="text"
                 name="userlocation"
                 value={userlocation}
-                onChange={handleChange}
+                onChange={(e) => {
+                  setUserLocation(e.target.value);
+                }}
                 placeholder="Kindly enter your location"
               />
 
@@ -89,7 +120,9 @@ function ModalApp({ show, close }) {
                 type="email"
                 name="usermail"
                 value={usermail}
-                onChange={handleChange}
+                onChange={(e) => {
+                  setUserMail(e.target.value);
+                }}
                 placeholder="Kindly enter your email"
               />
 
@@ -109,7 +142,7 @@ function ModalApp({ show, close }) {
 
           <Modal.Footer style={{ border: "none", padding: "none" }}>
             {/* <Button variant="secondary" onClick={close} >Close</Button> */}
-            <Button variant="primary" onSubmit={handleSubmit}>
+            <Button variant="primary" onClick={(e) => handleSubmit(e)}>
               Send
             </Button>
           </Modal.Footer>
@@ -117,6 +150,6 @@ function ModalApp({ show, close }) {
       </Modal>
     </div>
   );
-}
+};
 
 export default ModalApp;

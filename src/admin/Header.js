@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Link } from "react-router-dom";
 
@@ -14,11 +14,11 @@ const Header = () => {
 
         <nav>
           <Link to="/">
-            <a className="active">Home</a>
+            <Link className="active">Home</Link>
           </Link>
-          <a href="#">About</a>
+          <Link to="/about">About</Link>
           <Link>Request</Link>
-          <a href="#">Our Blog</a>
+          {/* <Link to="#">Our Blog</Link> */}
           <Link to="/contact">Contact Us</Link>
         </nav>
       </div>
@@ -26,8 +26,8 @@ const Header = () => {
   );
 };
 
-const mainNav = {
-  textDecoration: "none",
-};
+// const mainNav = {
+//   textDecoration: "none",
+// };
 
 export default Header;

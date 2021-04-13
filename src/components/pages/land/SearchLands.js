@@ -4,7 +4,12 @@ import search from "./search.png";
 const SearchLands = () => {
   const [location, setLocation] = useState("");
   const [property, setProperty] = useState("");
-  const [price, setPrice] = useState("");
+
+  // const handleChange = (e) => {
+  //   const [value] = e.target;
+  //   setLocation({ [name]: value });
+  //   setProperty({ [name]: value });
+  // };
 
   return (
     <form className="search-component">
@@ -13,6 +18,9 @@ const SearchLands = () => {
         name="location"
         value={location}
         placeholder="Enter a Location"
+        onchange={(e) => {
+          setLocation(e.target.value);
+        }}
       />
 
       <input
@@ -20,18 +28,14 @@ const SearchLands = () => {
         name="property"
         value={property}
         placeholder="Property type"
-      />
-
-      <input
-        type="text"
-        name="price"
-        value={price}
-        placeholder="Enter max price"
+        onchange={(e) => {
+          setProperty(e.target.value);
+        }}
       />
 
       <button>
         Search
-        <img src={search} />
+        <img src={search} alt="" />
       </button>
     </form>
   );

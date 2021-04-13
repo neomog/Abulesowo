@@ -10,6 +10,7 @@ import PropertyDetails from "./components/pages/propertydetails/PropertyDetails"
 import RentDetails from "./components/pages/rentdetails/RentDetails";
 import RequestForm from "./components/pages/requestform/RequestForm";
 import Consulting from "./components/pages/consulting/Consulting";
+import About from "./components/About";
 import Admin from "./admin/Admin";
 import AdminDashboard from "./admin/AdminDashboard";
 // import Register from "././admin/register/Register";
@@ -36,11 +37,11 @@ function App() {
   //   setModalOpen(!modalOpen);
   // }
 
-  const [adminDetails, setAdminDetails] = useState(
+  const [adminDetails] = useState(
     JSON.parse(localStorage.getItem("admindetails"))
   );
 
-  const [propsDetail, setPropsDetail] = useState(
+  const [propsDetail] = useState(
     JSON.parse(localStorage.getItem("propsdetail"))
   );
   return (
@@ -52,7 +53,9 @@ function App() {
           </Route>
           {/* {modalOpen && ( <RequestForm modalOpen={modalOpen} onClose={toggleState} id="modal" />)} */}
 
-          <Route exact path="/properties" component={Properties} />
+          <Route path="/properties">
+            <Properties propsDetail={propsDetail} />
+          </Route>
 
           <Route path="/lands" component={Lands} />
 
@@ -72,15 +75,17 @@ function App() {
 
           <Route path="/login" component={Login} />
 
-          <Route path="/admin">
+          <Route path="/about" component={About} />
+
+          <Route path="/create">
             <Admin adminDetails={adminDetails} propsDetail={propsDetail} />
           </Route>
 
-          <Route path="/admin-dashboard">
+          <Route path="/admin">
             <AdminDashboard adminDetails={adminDetails} />
           </Route>
 
-          {/* <ProtectUser path="/admin-dashboard" component={AdminDashboard} /> */}
+          <ProtectUser path="/admin" component={AdminDashboard} />
         </div>
       </Switch>
     </Router>
