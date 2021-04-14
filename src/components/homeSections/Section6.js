@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function Section6() {
   return (
-    <div className="section6">
+    <div className="section6 full">
       <section className="six mainContainer">
         <div>
           <Link href="#">Terms & Conditions</Link>{" "}

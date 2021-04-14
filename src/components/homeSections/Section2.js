@@ -8,7 +8,7 @@ function Section2() {
   return (
     <div className="section2 bg-light" id="about">
       <section className="row container bg-light">
-        <div className="column section2Image">
+        <div className="column section2Image" id="none">
           <img src={one} alt="one" />
           <img src={home} alt="home" className="section2Icon1" />
           <img src={location} alt="location" className="section2Icon2" />

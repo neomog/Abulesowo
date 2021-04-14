@@ -73,7 +73,7 @@ const Contact = () => {
     <div>
       <Header />
       <div>
-        <div style={contactHero}>
+        <div id="full" style={contactHero}>
           <p>Get in Touch</p>
           <p>
             Fill up the form and our team will get back to you within 24 hours
@@ -99,13 +99,6 @@ const Contact = () => {
                 onChange={(e) => setUserLocation(e.target.value)}
               />
 
-              {/* <label for="text">Message</label>
-            <textarea
-              className="textarea"
-              name="message"
-              value={contactInput.message}
-              onChange={handleChange}
-            /> */}
               <label for="mail">Your Email address</label>
               <input
                 type="mail"
@@ -121,7 +114,7 @@ const Contact = () => {
               />
             </form>
 
-            <div className="flex-two">
+            <div className="flex-two full">
               <div className="flex1">
                 <div className="flex-item1">
                   <img src={location} alt="location" />
@@ -179,6 +172,7 @@ const contactHero = {
   textAlign: "center",
   padding: "20px",
   fontSize: "20px",
+  width: "100%",
 };
 
 export default Contact;

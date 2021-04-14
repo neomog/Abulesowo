@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function Section5() {
   return (
-    <div className="section5">
+    <div className="section5 full">
       <section className="section5Row  mainContainer">
         <div className="sec2one">
           <p>Ready to get started?</p>
@@ -14,31 +14,30 @@ function Section5() {
             <button>Get started</button>
           </Link>
         </div>
-        <div className="sec5two">
-          <div>
-            <li className="redText">Services</li>
-            <Link to="/houses" className="text-link">
-              <p>Buy houses</p>
-            </Link>
-            <Link to="/lands" className="text-link">
-              <p>Buy land</p>
-            </Link>
-            <Link to="/consult-us" className="text-link">
-              <p>Consulting services</p>
-            </Link>
-          </div>
-          <div>
-            <li className="redText">About</li>
-            <Link to="/" className="text-link">
-              <p>Our story</p>
-            </Link>
-            <Link to="/" className="text-link">
-              <p>Benefits</p>
-            </Link>
-            <Link to="/" className="text-link">
-              <p>Privacy policy</p>
-            </Link>
-          </div>
+
+        <div>
+          <li className="redText">Services</li>
+          <Link to="/houses" className="text-link">
+            <p>Buy houses</p>
+          </Link>
+          <Link to="/lands" className="text-link">
+            <p>Buy land</p>
+          </Link>
+          <Link to="/consult-us" className="text-link">
+            <p>Consulting services</p>
+          </Link>
+        </div>
+        <div>
+          <li className="redText">About</li>
+          <Link to="/" className="text-link">
+            <p>Our story</p>
+          </Link>
+          <Link to="/" className="text-link">
+            <p>Benefits</p>
+          </Link>
+          <Link to="/" className="text-link">
+            <p>Privacy policy</p>
+          </Link>
         </div>
 
         <div className="sec5three">

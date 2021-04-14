@@ -10,10 +10,11 @@ const About = () => {
       <Header />
       <div
         style={{
-          width: "85%",
+          width: "100%",
           margin: "auto",
           textAlign: "center",
           marginTop: "50px",
+          padding: "20px",
         }}
       >
         <h4>About Us</h4>

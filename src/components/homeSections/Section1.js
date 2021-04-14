@@ -40,7 +40,7 @@ function Section1() {
           </span>
         </div>
 
-        <div className="col padding2 section1imggrid">
+        <div id="none" className="col padding2 section1imggrid">
           <img src={one} alt="one" className="item1" />
           <img src={dots} alt="dots" className="dots" />
           <img src={two} alt="two" className="item2" />

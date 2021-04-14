@@ -59,6 +59,8 @@ function App() {
 
           <Route path="/lands" component={Lands} />
 
+          <Route path="/houses" component={Properties} />
+
           <Route path="/property-details" component={PropertyDetails} />
 
           <Route path="/land-details" component={LandDetails} />
@@ -81,11 +83,13 @@ function App() {
             <Admin adminDetails={adminDetails} propsDetail={propsDetail} />
           </Route>
 
-          {/* <Route path="/admin">
-            <AdminDashboard adminDetails={adminDetails} />
-          </Route> */}
+          <Route path="/admin">
+            <ProtectUser>
+              <AdminDashboard adminDetails={adminDetails} />
+            </ProtectUser>
+          </Route>
 
-          <ProtectUser path="/admin" component={AdminDashboard} />
+          {/* <ProtectUser path="/admin" component={AdminDashboard} /> */}
         </div>
       </Switch>
     </Router>

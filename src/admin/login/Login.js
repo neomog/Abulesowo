@@ -45,7 +45,7 @@ const SignIn = () => {
             console.log(res.data);
             localStorage.setItem("admindetails", JSON.stringify(res.data));
             // localStorage.setItem("usertoken", res.data.usertoken);
-            history.push(`/admin-dashboard`);
+            history.push(`/admin`);
           } else {
             // console.log(res.data.message);
           }
