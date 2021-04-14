@@ -59,7 +59,7 @@ function App() {
 
           <Route path="/lands" component={Lands} />
 
-          <Route path="/houses" component={Properties} />
+          {/* <Route path="/houses" component={Properties} /> */}
 
           <Route path="/property-details" component={PropertyDetails} />
 
