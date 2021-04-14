@@ -48,6 +48,14 @@ button:hover {
   font-weight: bold;
   font-size: 20px;
 }
+
+.about-style {
+  width: 60%;
+  margin: auto;
+  font-size: 18px;
+  line-height: 2rem;
+}
+
 .form-container {
   background-color: #fff;
 }
@@ -140,6 +148,15 @@ a {
 
 li {
   list-style: none;
+}
+
+.header .item-hover:hover {
+  background-color: #dc3545;
+  padding-left: 10px;
+}
+
+#nav-color:hover {
+  color: #fff;
 }
 
 /*----------------------Home Styles------------*/
@@ -618,7 +635,32 @@ footer {
   padding-top: 20px;
 }
 
-@media (min-width: 1024) {
+@media (max-width: 1024px) {
+  .hide-sm {
+    display: none;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Text Styles */
+  .x-large {
+    font-size: 3rem;
+  }
+
+  .large {
+    font-size: 2rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  /* Navbar */
+
   .nav-ham {
     margin-left: 50px;
   }
@@ -797,6 +839,21 @@ footer {
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 3rem;
     padding-top: 20px;
+  }
+  .about-style {
+    width: 100%;
+
+    font-size: 18px;
+    line-height: 2rem;
+  }
+
+  #header {
+    display: flex;
+  }
+
+  #admin-position {
+    display: grid;
+    grid-template-columns: auto;
   }
 }
 
@@ -1005,6 +1062,16 @@ footer {
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 3rem;
     padding-top: 20px;
+  }
+  .about-style {
+    width: 100%;
+
+    font-size: 18px;
+    line-height: 2rem;
+  }
+
+  #header {
+    display: flex;
   }
 }
 

@@ -14,12 +14,18 @@ import Spinner from "../../layout/Spinner";
 
 import { useAlert } from "react-alert";
 
+import Section5 from "../../homeSections/Section5";
+import Section6 from "../../homeSections/Section6";
+import Footer from "../../layout/Footer";
+
 const Lands = () => {
   const [loading, setLoading] = useState(false);
   const [land, setLand] = useState([]);
   const [searchLocation, setSearchLocation] = useState("");
   const alert = useAlert();
   const action = "06";
+  const [msg, setmsg] = useState("");
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     setLoading(!loading);
@@ -35,13 +41,27 @@ const Lands = () => {
         })
         .then((res) => {
           // if (res.data.m)
+          if (res.data.response === "00") {
+            setmsg(res.data.message);
+            setmsg("No item found");
+            setLoading(false);
+          } else {
+            setLand(res.data);
+            setSearchLocation("");
+          }
           setLand(res.data);
           setLoading(false);
           // console.log(res.data);
+        })
+        .catch((error) => {
+          setLoading(false);
         });
+    } else {
+      setLoading(false);
+      // setmsg("Network error please refresh");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [count]);
 
   const searchaction = "10";
 
@@ -60,16 +80,23 @@ const Lands = () => {
           params: data,
         })
         .then((res) => {
-          // setLand(res.data);
-          setSearchLocation("");
-          alert.success(res.data.message);
-
-          console.log(res.data.message);
+          console.log(res.data);
+          if (res.data.response === "00") {
+            setmsg("No item found");
+            setLand([]);
+            setLoading(false);
+          } else {
+            setLand(res.data);
+            setSearchLocation("");
+            setLoading(false);
+            setmsg("");
+          }
         })
         .catch((error) => {
-          console.log(error);
+          alert.show(error);
         });
     } else {
+      setSearchLocation("");
       alert.show("please check back later");
     }
   };
@@ -121,6 +148,7 @@ const Lands = () => {
           ))}
         </section>
       )}
+      <div style={{ textAlign: "center", fontSize: "20px" }}>{msg}</div>
 
       <div className="row rent">
         <div className="cols">
@@ -132,6 +160,11 @@ const Lands = () => {
             <img src={next} alt="next" />
           </Link>
         </div>
+      </div>
+      <div style={{ border: "1px solid #dc3545", marginTop: "30px" }}>
+        <Section5 />
+        <Section6 />
+        <Footer />
       </div>
     </div>
   );

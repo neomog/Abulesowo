@@ -18,14 +18,7 @@ const About = () => {
       >
         <h4>About Us</h4>
         <h3>We provide the best property for you!</h3>
-        <p
-          style={{
-            width: "60%",
-            margin: "auto",
-            fontSize: "18px",
-            lineHeight: "2rem",
-          }}
-        >
+        <p className="about-style">
           Abulesowo, One of The Largest Real Estate Investment Firm in Nigeria.
           One of top real estate companies in Nigeria. Real estate investment
           firm positioned to deliver a cutting edge and competitive real estate

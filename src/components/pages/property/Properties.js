@@ -8,6 +8,9 @@ import next from "./next.png";
 import prev from "./prev.png";
 // import data from "./pics/db";
 import Spinner from "../../layout/Spinner";
+import Section5 from "../../homeSections/Section5";
+import Section6 from "../../homeSections/Section6";
+import Footer from "../../layout/Footer";
 
 import { Link } from "react-router-dom";
 
@@ -22,6 +25,8 @@ const Properties = () => {
   const alert = useAlert();
 
   const action = "06";
+  const [msg, setmsg] = useState("");
+  const [count, setcount] = useState(0);
 
   useEffect(() => {
     setLoading(!loading);
@@ -36,14 +41,27 @@ const Properties = () => {
           params: data,
         })
         .then((res) => {
-          setProperty(res.data);
+          console.log(res.data);
+          if (res.data.response === "00") {
+            setmsg(res.data.message);
+            setmsg("no data found");
+            setLoading(false);
+          } else {
+            setProperty(res.data);
+            setLoading(false);
+            setmsg("No item found");
+            setSearchLocation("");
+          }
+        })
+        .catch((error) => {
           setLoading(false);
-          // console.log(res.data);
         });
+    } else {
+      setLoading(false);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [count]);
 
   // const searchaction = "10";
 
@@ -67,6 +85,8 @@ const Properties = () => {
         alert.success(res.data.message);
       })
       .catch((error) => {
+        setLoading(false);
+        setSearchLocation("");
         console.log(error);
       });
   };
@@ -105,7 +125,7 @@ const Properties = () => {
             </div>
 
             <div className="right">
-              <Link href="#" className="redText">
+              <Link to="/houses" className="redText">
                 View all houses for sale <img src={next} alt="" />
               </Link>
             </div>
@@ -120,6 +140,7 @@ const Properties = () => {
             ))}
           </section>
         )}
+        <div style={{ textAlign: "center", fontSize: "20px" }}>{msg}</div>
         <div className="row rent">
           <div className="cols">
             <Link href="/property">
@@ -130,6 +151,11 @@ const Properties = () => {
               <img src={next} alt="next" />
             </Link>
           </div>
+        </div>
+        <div style={{ border: "1px solid #dc3545", marginTop: "30px" }}>
+          <Section5 />
+          <Section6 />
+          <Footer />
         </div>
       </div>
     </>

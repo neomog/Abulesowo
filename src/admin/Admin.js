@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 // import Alert from "../alert/Alert";
-// import Header from "../components/layout/Header";
+import Header from "./Header";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
@@ -110,8 +110,7 @@ const Admin = (adminDetails) => {
 
   return (
     <div>
-      <header>
-        {/* {} */}
+      {/* <header>
         <div className="header">
           <div>
             <span>
@@ -129,7 +128,9 @@ const Admin = (adminDetails) => {
             <Link to="/login">Logout</Link>
           </nav>
         </div>
-      </header>
+      </header> */}
+
+      <Header />
       <div style={{ width: "80%", margin: "auto" }}>
         <Form>
           <Form.Group>
@@ -174,7 +175,7 @@ const Admin = (adminDetails) => {
                 var file = e.target.files[0];
                 let reader = new FileReader();
                 reader.readAsDataURL(file);
-                reader.onload = () => {
+                reader.onloadend = () => {
                   setFile(reader.result);
                 };
               }}

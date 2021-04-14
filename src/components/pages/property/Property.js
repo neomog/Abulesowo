@@ -63,7 +63,7 @@ const Property = ({ item }) => {
           </Card>
         </div>
       ) : (
-        <></>
+        <>{/* <p>No data found.</p> */}</>
       )}
     </>
   );

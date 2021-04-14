@@ -17,7 +17,7 @@ function Section5() {
         <div className="sec5two">
           <div>
             <li className="redText">Services</li>
-            <Link to="/properties" className="text-link">
+            <Link to="/houses" className="text-link">
               <p>Buy houses</p>
             </Link>
             <Link to="/lands" className="text-link">

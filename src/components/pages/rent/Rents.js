@@ -13,6 +13,10 @@ import Spinner from "../../layout/Spinner";
 
 import { useAlert } from "react-alert";
 
+import Section5 from "../../homeSections/Section5";
+import Section6 from "../../homeSections/Section6";
+import Footer from "../../layout/Footer";
+
 function Rents() {
   const [loading, setLoading] = useState(false);
   const [rent, setRent] = useState([]);
@@ -22,6 +26,9 @@ function Rents() {
   const alert = useAlert();
 
   const action = "06";
+
+  const [msg, setmsg] = useState("");
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     setLoading(!loading);
@@ -36,14 +43,26 @@ function Rents() {
           params: data,
         })
         .then((res) => {
-          setRent(res.data);
+          if (res.dada.response === "00") {
+            setmsg("No item found");
+            setRent([]);
+            setmsg(res.data.message);
+            setLoading(false);
+          } else {
+            setRent(res.data);
+            setLoading(false);
+
+            setSearchLocation("");
+          }
+        })
+        .catch((error) => {
+          setSearchLocation("");
           setLoading(false);
-          // console.log(res.data);
         });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [count]);
 
   const searchaction = "10";
 
@@ -108,7 +127,7 @@ function Rents() {
           </div>
 
           <div className="right">
-            <Link href="#" className="redText">
+            <Link to="/rents" className="redText">
               View all houses for rent <img src={next} alt="" />
             </Link>
           </div>
@@ -124,6 +143,8 @@ function Rents() {
         </section>
       )}
 
+      <div style={{ textAlign: "center", fontSize: "20px" }}>{msg}</div>
+
       <div className="row rent">
         <div className="cols">
           <Link href="/property">
@@ -134,6 +155,11 @@ function Rents() {
             <img src={next} alt="next" />
           </Link>
         </div>
+      </div>
+      <div style={{ border: "1px solid #dc3545", marginTop: "30px" }}>
+        <Section5 />
+        <Section6 />
+        <Footer />
       </div>
     </div>
   );

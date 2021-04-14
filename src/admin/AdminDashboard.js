@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-// import Header from "../components/layout/Header";
+import Header from "./Header";
 // import one from "./prop1.png";
 import { Link } from "react-router-dom";
 
 import { useAlert } from "react-alert";
+
+import Spinner from "../components/layout/Spinner";
 
 // import data from "./pics/db";
 
@@ -13,6 +15,7 @@ import { Table, Button } from "react-bootstrap";
 import axios from "axios";
 
 const AdminDashboard = (props) => {
+  const [loading, setLoading] = useState(false);
   const alert = useAlert();
   const { className } = props;
   // const [modal, setModal] = useState(false);
@@ -28,6 +31,7 @@ const AdminDashboard = (props) => {
   const [afterDel, setAfterDel] = useState(false);
 
   useEffect(() => {
+    setLoading(!loading);
     // setPropsList(data);
     if (action) {
       const data = {
@@ -42,6 +46,7 @@ const AdminDashboard = (props) => {
         .then((req) => {
           // console.log(req.data);
           setPropsList(req.data);
+          setLoading(false);
           localStorage.setItem("propsdetails", JSON.stringify(req.data));
         })
         .catch((error) => {
@@ -123,7 +128,7 @@ const AdminDashboard = (props) => {
         propsprice: price,
         propstype: propstype,
       };
-      console.log(data);
+      // console.log(data);
       axios
         .get("http://api.abulesowo.ng", {
           params: data,
@@ -141,7 +146,7 @@ const AdminDashboard = (props) => {
 
   return (
     <div>
-      <header>
+      {/* <header>
         <div className="header">
           <div>
             <span>
@@ -157,7 +162,8 @@ const AdminDashboard = (props) => {
             <Link to="/login">Logout</Link>
           </nav>
         </div>
-      </header>
+      </header> */}
+      <Header />
       <div style={{ width: "80%", margin: "auto" }}>
         <div>
           <h4>Manage Property</h4>
@@ -166,73 +172,77 @@ const AdminDashboard = (props) => {
           <Link to="/create">Add new property</Link>
         </Button>
 
-        <Table striped bordered hover variant="light">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>image</th>
-              <th>Title</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <Table striped bordered hover variant="light" id="admin-position">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>image</th>
+                <th>Title</th>
+                <th>Action</th>
+              </tr>
+            </thead>
 
-          {propsList.map((item, index) => {
-            const {
-              propstype,
-              propsdesc,
-              propslocation,
-              propsprice,
-              propstoken,
-              propsname,
-              file,
-            } = item;
+            {propsList.map((item, index) => {
+              const {
+                propstype,
+                propsdesc,
+                propslocation,
+                propsprice,
+                propstoken,
+                propsname,
+                file,
+              } = item;
 
-            return (
-              <tbody key={index}>
-                <tr>
-                  <td>{`${index + 1}`}</td>
-                  <td>
-                    <img src={file} alt="one" />
-                  </td>
-                  <td>
-                    {propsname}
-                    <br />
-                    {propsdesc}
-                    <br />
-                    {propsprice}
-                    <br />
-                    {propslocation}
-                    <br />
-                    {propstype}
-                  </td>
-                  <td>
-                    <Button
-                      onClick={() =>
-                        handleEditModal(
-                          propsname,
-                          propsdesc,
-                          propslocation,
-                          propsprice,
-                          propstoken,
-                          propstype
-                        )
-                      }
-                    >
-                      Edit
-                    </Button>{" "}
-                    <Button
-                      style={{ backgroundColor: "red", border: "none" }}
-                      onClick={(e) => handleDelete(e, propstoken)}
-                      id={item.propsid}
-                    >
-                      Delete
-                    </Button>
-                  </td>
-                </tr>
-              </tbody>
-            );
-          })}
-        </Table>
+              return (
+                <tbody key={index}>
+                  <tr id="admin-position">
+                    <td>{`${index + 1}`}</td>
+                    <td>
+                      <img src={file} alt="one" />
+                    </td>
+                    <td>
+                      {propsname}
+                      <br />
+                      {propsdesc}
+                      <br />
+                      {propsprice}
+                      <br />
+                      {propslocation}
+                      <br />
+                      {propstype}
+                    </td>
+                    <td>
+                      <Button
+                        onClick={() =>
+                          handleEditModal(
+                            propsname,
+                            propsdesc,
+                            propslocation,
+                            propsprice,
+                            propstoken,
+                            propstype
+                          )
+                        }
+                      >
+                        Edit
+                      </Button>{" "}
+                      <Button
+                        style={{ backgroundColor: "red", border: "none" }}
+                        onClick={(e) => handleDelete(e, propstoken)}
+                        id={item.propsid}
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                </tbody>
+              );
+            })}
+          </Table>
+        )}
       </div>
       <Modal isOpen={hmodal} toggle={handleEditModal} className={className}>
         <ModalHeader toggle={handleEditModal}>Modal title</ModalHeader>

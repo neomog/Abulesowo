@@ -17,10 +17,10 @@ function Section1() {
           <p>Search properties for rent or sale in Oyo state</p>
           <span>
             <input
-              placeholder="Enter an Address, neighbourhood,city, Zip code"
+              placeholder="Enter Location"
               value={searchProps}
               onChange={(e) => setSearchProps(e.target.value)}
-              style={{ paddingLeft: "10px", textAlign: "center" }}
+              style={{ paddingLeft: "10px", fontSize: "18px" }}
             />
             <i
               style={{
@@ -32,7 +32,7 @@ function Section1() {
                 marginLeft: "-55px",
               }}
             >
-              <Link to="/properties">
+              <Link to="/lands">
                 {" "}
                 <img src={search} alt="search" />
               </Link>

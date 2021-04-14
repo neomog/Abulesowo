@@ -30,21 +30,27 @@ const Header = () => {
 
   return (
     <div>
-      <Navbar color="faded" light className="header">
+      <Navbar color="faded" light className="header" id="mr-auto">
         <NavbarBrand href="/" className="mr-auto">
           <strong>Abulesowo</strong>
         </NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
-            <NavItem>
-              <NavLink href="/">Home</NavLink>
+            <NavItem className="item-hover">
+              <NavLink id="nav-color" href="/">
+                Home
+              </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="/about">About</NavLink>
+            <NavItem className="item-hover">
+              <NavLink id="nav-color" href="/about">
+                About
+              </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="/contact">Contact Us</NavLink>
+            <NavItem className="item-hover">
+              <NavLink id="nav-color" href="/contact">
+                Contact Us
+              </NavLink>
             </NavItem>
           </Nav>
         </Collapse>
