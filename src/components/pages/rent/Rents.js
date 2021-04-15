@@ -118,7 +118,7 @@ function Rents() {
 
           <button onClick={handleSearch}>
             Search
-            <img src={search} alt="" />
+            {/* <img src={search} alt="" /> */}
           </button>
         </form>
         <div className="view-container">
@@ -127,7 +127,7 @@ function Rents() {
           </div>
 
           <div className="right">
-            <Link to="/rents" className="redText">
+            <Link to="/rents" className="redText view-all">
               View all houses for rent <img src={next} alt="" />
             </Link>
           </div>

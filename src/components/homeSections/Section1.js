@@ -32,7 +32,7 @@ function Section1() {
                 marginLeft: "-55px",
               }}
             >
-              <Link to="/lands">
+              <Link to="/properties">
                 {" "}
                 <img src={search} alt="search" />
               </Link>

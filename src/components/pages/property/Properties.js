@@ -115,7 +115,7 @@ const Properties = () => {
 
             <button onClick={handleSearch}>
               Search
-              <img src={search} alt="" />
+              {/* <img src={search} alt="" /> */}
             </button>
           </form>
           <br />
@@ -125,7 +125,7 @@ const Properties = () => {
             </div>
 
             <div className="right">
-              <Link to="/houses" className="redText">
+              <Link to="/houses" className="redText view-all">
                 View all houses for sale <img src={next} alt="" />
               </Link>
             </div>

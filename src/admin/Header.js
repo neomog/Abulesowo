@@ -17,7 +17,7 @@ const Header = () => {
   const toggleNavbar = () => setCollapsed(!collapsed);
   return (
     <div>
-      <Navbar color="faded" light className="header" id="mr-auto">
+      <Navbar color="faded" light className="header" id="header">
         <NavbarBrand href="/" className="mr-auto">
           <strong>Abulesowo</strong>
         </NavbarBrand>

@@ -30,12 +30,13 @@ const Header = () => {
 
   return (
     <div>
-      <Navbar color="faded" light className="header" id="mr-auto">
-        <NavbarBrand href="/" className="mr-auto">
+      <Navbar color="faded" light className="header">
+        <NavbarBrand href="/" className="mr-auto" id="head-margin-right">
           <strong>Abulesowo</strong>
         </NavbarBrand>
-        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-        <Collapse isOpen={!collapsed} navbar>
+        {/* <div className="special-space">bbbbbbbbbbbbbbbbbbb</div> */}
+        <NavbarToggler onClick={toggleNavbar} id="head-margin-left" />
+        <Collapse isOpen={!collapsed} navbar className="mr-2">
           <Nav navbar>
             <NavItem className="item-hover">
               <NavLink id="nav-color" href="/">

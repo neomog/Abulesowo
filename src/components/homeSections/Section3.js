@@ -21,10 +21,7 @@ function Section3() {
               with over 1 million houses for sale, all available on Abulesowo
               website
             </p>
-            <Link
-              to="/houses
-            "
-            >
+            <Link to="/houses">
               <button>Search Homes</button>
             </Link>
           </div>

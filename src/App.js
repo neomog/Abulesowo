@@ -17,6 +17,8 @@ import AdminDashboard from "./admin/AdminDashboard";
 import Login from "./admin/login/Login";
 import ProtectUser from "./protectUser";
 
+import AllSearch from "../src/components/pages/homesearch/AllSearch";
+
 // --------------------------------------------------
 import Contact from "./components/pages/contact/Contact";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -56,6 +58,8 @@ function App() {
           <Route path="/houses">
             <Properties propsDetail={propsDetail} />
           </Route>
+
+          <Route path="/properties" component={AllSearch} />
 
           <Route path="/lands" component={Lands} />
 
